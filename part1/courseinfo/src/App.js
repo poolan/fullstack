@@ -4,7 +4,15 @@ import React from 'react';
 const Header = (props) => {
   return (
     <div>
-      <h1>{props.course.name}</h1>
+      <h1>{props.courseinfo.name}</h1>
+    </div>
+  )
+}
+
+const Part = (props) => {
+  return (
+    <div>
+      <p>{props.content.name} {props.content.exercises}</p>
     </div>
   )
 }
@@ -12,9 +20,9 @@ const Header = (props) => {
 const Content = (props) => {
   return (
     <div>
-      <p>{props.course.parts[0].name} {props.course.parts[0].exercises}</p>
-      <p>{props.course.parts[1].name} {props.course.parts[1].exercises}</p>
-      <p>{props.course.parts[2].name} {props.course.parts[2].exercises}</p>
+      <Part content={props.content[0]} />
+      <Part content={props.content[1]} />
+      <Part content={props.content[2]} />
     </div>
   )
 }
@@ -22,7 +30,7 @@ const Content = (props) => {
 const Total = (props) => {
   return (
     <div>
-      <p>Number of exercises {props.course.parts[0].exercises + props.course.parts[1].exercises + props.course.parts[2].exercises}</p>
+      <p>Number of exercises {props.courseinfo.parts[0].exercises + props.courseinfo.parts[1].exercises + props.courseinfo.parts[2].exercises}</p>
     </div>
   )
 }
@@ -48,9 +56,9 @@ const App = () => {
 
   return (
     <div>
-      <Header course={course} />
-      <Content course={course}/>
-      <Total course={course}/>
+      <Header courseinfo={course} />
+      <Content content={course.parts}/>
+      <Total courseinfo={course}/>
     </div> 
   )
 }
